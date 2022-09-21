@@ -61,7 +61,7 @@
         {  
             $result = InputsOutputsModel::where(DB::raw('date(datetime)'), $date)
                 ->where(DB::raw('hour(datetime)'), $hour)
-                ->get();
+                ->get()->toArray();
            
            return $result;
         }

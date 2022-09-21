@@ -1,12 +1,12 @@
 @include('head')
-<?php if(!empty($days)): ?>
+@if($days->isNotEmpty())
 <div id="select_day">
     <label>Wybierz dzień:</label>
     <select id="select_day_selector">
         <option value="0"></option>
-        <?php foreach ($days as $row): ?>
-        <option value="<?= $row['date'] ?>"><?= $row['day'] ?></option>
-        <?php endforeach; ?>
+        @foreach ($days as $row)
+        <option value="{{ $row['date'] }}">{{ $row['day'] }}</option>
+        @endforeach
     </select>
     <img src="{{ url('/') }}/img/loading.gif" id="loader" />
 </div>
@@ -119,16 +119,16 @@
         <div id="chart_div2"></div>
     </div>
 </div>
-<?php endif; ?>
+@endif
 Kamera 1<br/><br/>
-Ilość wejść: <?=$get_input_camera1['count_wejsc']?><br/>
-Ilość wyjść: <?=$get_output_camera1['count_wyjsc']?><br/><br/>
+Ilość wejść: {{ $get_input_camera1['count_wejsc'] }}<br/>
+Ilość wyjść: {{ $get_output_camera1['count_wyjsc'] }}<br/><br/>
 Kamera 2<br/><br/>
-Ilość wejść: <?=$get_input_camera2['count_wejsc']?><br/>
-Ilość wyjść: <?=$get_output_camera2['count_wyjsc']?><br/><br/>
+Ilość wejść: {{ $get_input_camera2['count_wejsc'] }}<br/>
+Ilość wyjść: {{ $get_output_camera2['count_wyjsc'] }}<br/><br/>
 
-Ilość wejść globalna: <?=$get_input_global['count_wejsc']?><br/>
-Ilość wyjść globalna: <?=$get_output_global['count_wyjsc']?><br/><br/>
+Ilość wejść globalna: {{ $get_input_global['count_wejsc'] }}<br/>
+Ilość wyjść globalna: {{ $get_output_global['count_wyjsc'] }}<br/><br/>
 
-Ilość osób na obiekcie: <?php if(!empty($get_count_persons['count_persons'])): ?><?=$get_count_persons['count_persons']?><?php else: ?>0<?php endif; ?><br/><br/>
+Ilość osób na obiekcie: @if(!empty($get_count_persons['count_persons'])){{ $get_count_persons['count_persons'] }}@else 0 @endif<br/><br/>
 @include('footer')
